@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas Drawing App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+		<script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      * {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+    <link rel="stylesheet" href="src/styles/styles.css" />
+  </head>
+
+  <body>
+    <div class="flex justify-center items-center flex-col">
+      <br />
+      <h1 class="text-4xl text-slate-900 font-bold">Drawing App</h1>
+      <br />
+      <div
+        class="flex justify-center items-center flex-col bg-purple-600 p-4 gap-4"
+      >
+        <canvas
+          id="myCanvas"
+          class="border-4 border-purple-600 rounded bg-slate-50 transition bg-gray-50"
+          width="1200"
+          height="600"
+        ></canvas>
+        <br /><br />
+        <div class="flex justify-center items-center gap-4">
+          <div>
+            <label
+              for="txtColor"
+              class="block mb-2 text-sm font-medium text-slate-50"
+              >Color</label
+            >
+            <select
+              id="txtColor"
+              class="bg-gray-50 transition border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            ></select>
+          </div>
+          <div>
+            <label
+              for="txtType"
+              class="block mb-2 text-sm font-medium text-slate-50"
+              >Type</label
+            >
+            <select
+              id="txtType"
+              class="bg-gray-50 transition border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-48 p-2.5"
+            >
+              <option>Circle</option>
+              <option>Line</option>
+              <option>Rectangle</option>
+            </select>
+          </div>
+          <div>
+            <label
+              for="txtWidth"
+              class="block mb-2 text-sm font-medium text-slate-50"
+              >Width</label
+            >
+            <input
+              type="number"
+              id="txtWidth"
+              class="bg-gray-50 transition border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 transition"
+              value="50"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="txtHeight"
+              class="block mb-2 text-sm font-medium text-slate-50"
+              >Height</label
+            >
+            <input
+              type="number"
+              id="txtHeight"
+              class="bg-gray-50 transition border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 transition"
+              value="50"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="txtRadius"
+              class="block mb-2 text-sm font-medium text-slate-50"
+              >Radius</label
+            >
+            <input
+              type="number"
+              id="txtRadius"
+              class="bg-gray-50 transition border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+              value="20"
+              required
+            />
+          </div>
+        </div>
+        <br />
+        <button
+          onclick="ctx.clearRect(0, 0, cvs.width, cvs.height);"
+          type="button"
+          class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+        >
+          Clear Canvas
+        </button>
+      </div>
+    </div>
+    <script src="scripts/script.js"></script>
+  </body>
+</html>
