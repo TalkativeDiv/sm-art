@@ -184,6 +184,7 @@ let drawShape = (x, y, r, c, w, s, h, lX, lY) => {
       ctx.arc(x, y, r, 0, 2 * Math.PI);
       break;
     case "Rectangle":
+      ctx.strokeStyle = c;
       ctx.fillRect(x, y, w, h);
       break;
   }
@@ -218,3 +219,99 @@ cvs.addEventListener("mousemove", (e) => {
   lastPosX = mX;
   lastPosY = mY;
 });
+
+function my_touchstart(e) {
+  console.log("touch start");
+
+  //Addictonal Activity start
+  color = document.getElementById("color").value;
+  width = document.getElementById("txtWidth").value;
+  //Addictonal Activity ends
+
+  last_position_of_x = e.touches[0].clientX - cvs.offsetLeft;
+  last_position_of_y = e.touches[0].clientY - cvs.offsetTop;
+}
+cvs.addEventListener("touchstart", (e) => {
+  console.log("touch start");
+
+  //Addictonal Activity start
+  color = document.getElementById("txtColor").value;
+  width = document.getElementById("txtWidth").value;
+  //Addictonal Activity ends
+
+  last_position_of_x = e.touches[0].clientX - cvs.offsetLeft;
+  last_position_of_y = e.touches[0].clientY - cvs.offsetTop;
+});
+
+let current_position_of_toucb_x, current_position_of_touch_y;
+cvs.addEventListener("touchmove", (e) => {
+  console.log("touchMove");
+  let current_position_of_touch_x = e.touches[0].clientX - cvs.offsetLeft;
+  let current_position_of_touch_y = e.touches[0].clientY - cvs.offsetTop;
+  ctx.beginPath();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = width;
+
+  console.log("Last position of x and y coordinates = ");
+  console.log("x = " + last_position_of_x + "y = " + last_position_of_y);
+  ctx.moveTo(last_position_of_x, last_position_of_y);
+
+  console.log("Current position of x and y coordinates = ");
+  console.log(
+    "x  = " + current_position_of_touch_x + "y = " + current_position_of_touch_y
+  );
+  ctx.lineTo(current_position_of_touch_x, current_position_of_touch_y);
+
+  last_position_of_x = current_position_of_touch_x;
+  last_position_of_y = current_position_of_touch_y;
+  ctx.stroke();
+});
+cvs.addEventListener("mousedown", my_mousedown);
+
+function my_mousedown(e) {
+  //Addictonal Activity start
+  color = document.getElementById("color").value;
+  width = document.getElementById("txtWidth").value;
+  //Addictonal Activity ends
+
+  mouseEvent = "mouseDown";
+}
+
+cvs.addEventListener("mouseup", my_mouseup);
+function my_mouseup(e) {
+  mouseEvent = "mouseUP";
+}
+
+cvs.addEventListener("mouseleave", my_mouseleave);
+function my_mouseleave(e) {
+  mouseEvent = "mouseleave";
+}
+
+cvs.addEventListener("mousemove", my_mousemove);
+function my_mousemove(e) {
+  current_position_of_mouse_x = e.clientX - cvs.offsetLeft;
+  current_position_of_mouse_y = e.clientY - cvs.offsetTop;
+
+  if (mouseEvent == "mouseDown") {
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = width_of_line;
+
+    console.log("Last position of x and y coordinates = ");
+    console.log("x = " + last_position_of_x + "y = " + last_position_of_y);
+    ctx.moveTo(last_position_of_x, last_position_of_y);
+
+    console.log("Current position of x and y coordinates = ");
+    console.log(
+      "x  = " +
+        current_position_of_mouse_x +
+        "y = " +
+        current_position_of_mouse_y
+    );
+    ctx.lineTo(current_position_of_mouse_x, current_position_of_mouse_y);
+    ctx.stroke();
+  }
+
+  last_position_of_x = current_position_of_mouse_x;
+  last_position_of_y = current_position_of_mouse_y;
+}
